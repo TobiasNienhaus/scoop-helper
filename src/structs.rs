@@ -23,6 +23,10 @@ impl Export {
         }
         self.entries.push(ExportEntry::new(name, version))
     }
+
+    pub fn buckets(&self) -> impl Iterator<Item = &str> {
+        self.buckets.iter().map(|s| s.as_str())
+    }
 }
 
 #[derive(Debug, Deserialize, Serialize)]

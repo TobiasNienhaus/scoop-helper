@@ -20,7 +20,8 @@ impl Opts {
 
 #[derive(Clap, Debug, Clone)]
 pub enum SubCommand {
-    Export(ExportOpts)
+    Export(ExportOpts),
+    Import(ImportOpts),
 }
 
 #[derive(Clap, Debug, Clone)]
@@ -36,5 +37,22 @@ impl ExportOpts {
             self.location.unwrap_or(env::current_dir().unwrap().into_os_string().into_string().unwrap()),
             self.filetype,
         )
+    }
+}
+
+#[derive(Clap, Debug, Clone)]
+pub struct ImportOpts {
+    location: String,
+    #[clap(short, long, arg_enum)]
+    filetype: Option<FileType>
+}
+
+impl ImportOpts {
+    pub fn location(&self) -> &str {
+        &self.location
+    }
+
+    pub fn filetype(&self) -> Option<FileType> {
+        self.filetype.clone()
     }
 }

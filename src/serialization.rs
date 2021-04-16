@@ -16,6 +16,15 @@ impl FileType {
             FileType::Yaml => "yaml",
         }
     }
+
+    pub fn from_str(s: &str) -> Option<FileType> {
+        match s {
+            "json" => Some(FileType::Json),
+            "toml" => Some(FileType::Toml),
+            "yaml" | "yml" => Some(FileType::Yaml),
+            _ => None
+        }
+    }
 }
 
 pub fn to_string<T: Serialize>(file_type: &FileType, t: &T) -> String {
