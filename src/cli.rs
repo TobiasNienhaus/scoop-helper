@@ -38,13 +38,3 @@ impl ExportOpts {
         )
     }
 }
-
-impl FileType {
-    pub fn extension(&self) -> &'static str {
-        match self {
-            FileType::Json => "json",
-            FileType::Toml => "toml",
-            FileType::Yaml => "yaml",
-        }
-    }
-}

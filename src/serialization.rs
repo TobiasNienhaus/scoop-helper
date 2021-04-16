@@ -8,6 +8,16 @@ pub enum FileType {
     Yaml,
 }
 
+impl FileType {
+    pub fn extension(&self) -> &'static str {
+        match self {
+            FileType::Json => "json",
+            FileType::Toml => "toml",
+            FileType::Yaml => "yaml",
+        }
+    }
+}
+
 pub fn to_string<T: Serialize>(file_type: &FileType, t: &T) -> String {
     match file_type {
         FileType::Json => {
