@@ -12,7 +12,7 @@ fn main() {
             export::export(dir.as_str(), file_type);
         }
         cli::SubCommand::Import(opts) => {
-            import::import(opts.location(), opts.filetype())
+            import::import(opts.location(), opts.filetype(), opts.allow_any_version())
         }
     }
 }

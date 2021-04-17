@@ -44,7 +44,9 @@ impl ExportOpts {
 pub struct ImportOpts {
     location: String,
     #[clap(short, long, arg_enum)]
-    filetype: Option<FileType>
+    filetype: Option<FileType>,
+    #[clap(long)]
+    exact_version: bool,
 }
 
 impl ImportOpts {
@@ -54,5 +56,9 @@ impl ImportOpts {
 
     pub fn filetype(&self) -> Option<FileType> {
         self.filetype.clone()
+    }
+
+    pub fn allow_any_version(&self) -> bool {
+        !self.exact_version
     }
 }

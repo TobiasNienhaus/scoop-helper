@@ -27,11 +27,24 @@ impl Export {
     pub fn buckets(&self) -> impl Iterator<Item = &str> {
         self.buckets.iter().map(|s| s.as_str())
     }
+
+    pub fn buckets_vec(&self) -> Vec<String> {
+        let mut v = Vec::with_capacity(self.buckets.len());
+        for val in self.buckets.iter() {
+            v.push(val.clone())
+        }
+        v
+    }
+
+    pub fn entries(&self) -> &[ExportEntry] {
+        &self.entries
+    }
 }
 
 #[derive(Debug, Deserialize, Serialize)]
-struct ExportEntry {
+pub struct ExportEntry {
     name: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     version: Option<String>,
 }
 
@@ -41,6 +54,14 @@ impl ExportEntry {
             name: name.to_owned(),
             version: version.map(|s| s.to_owned())
         }
+    }
+
+    pub fn name(&self) -> &str {
+        self.name.as_str()
+    }
+
+    pub fn version(&self) -> Option<&str> {
+        self.version.as_deref()
     }
 }
 

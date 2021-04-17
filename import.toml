@@ -1,0 +1,10 @@
+buckets = [
+    'extras',
+    'main',
+]
+
+[[entries]]
+name = 'micro'
+
+[[entries]]
+name = 'hyperfine'
